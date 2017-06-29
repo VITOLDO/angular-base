@@ -1,2 +1,1 @@
-# angular-base
-angular project template
+AngularJS template project
