@@ -1,5 +1,5 @@
 {
-  "name": "angularjs-by-example",
+  "name": "angular-base",
   "version": "1.0.0",
   "description": "An example application to demonstrate a wide range of AngularJS best practices",
   "main": "index.html",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/RevillWeb/angularjs-by-example.git"
+    "url": "git://github.com/VITOLDO/angular-base.git"
   },
   "keywords": [
     "angularjs",
@@ -17,10 +17,9 @@
     "tutorial",
     "angularjs"
   ],
-  "author": "Leon Revill",
-  "license": "BSD-2-Clause",
+  "author": "Viktor Filonenko",
   "bugs": {
-    "url": "https://github.com/RevillWeb/angularjs-by-example/issues"
+    "url": "https://github.com/VITOLDO/angular-base/issues"
   },
   "devDependencies": {
     "gulp": "~3.8.8",
