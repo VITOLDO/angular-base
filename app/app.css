@@ -23,3 +23,24 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+body {
+    padding: 10px;
+}
+
+table {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    padding: 8px;
+}
+
+td {
+    border-top: 1px solid #ddd;
+    padding: 8px;
+}

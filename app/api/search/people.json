@@ -1,0 +1,31 @@
+[{
+  "id":1,
+  "name":"Peyton Manning",
+  "phone":"(303) 567-8910",
+  "address": {
+    "street": "1234 Main Street",
+    "city": "Greenwood Village",
+    "state": "CO",
+    "zip": "80111"
+  }
+ },{
+  "id":2,
+  "name": "Viktor Filonenko",
+  "phone": "(097) 111-2233",
+  "address": {
+    "street": "1235 Main Street",
+    "city": "Greenwood Village",
+    "state": "CO",
+    "zip": "80111"
+  }
+ },{
+  "id":3,
+  "name": "John Smith",
+  "phone": "(303) 567-8912",
+  "address": {
+    "street": "1236 Main Street",
+    "city": "Greenwood Village",
+    "state": "CO",
+    "zip": "80111"
+  }
+ }]
