@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('myApp.search')
+    .module('myApp')
     .controller('SearchController', ['SearchService', function (SearchService){
 
         var vm = this;
