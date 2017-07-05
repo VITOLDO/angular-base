@@ -1,5 +1,17 @@
 
-    <p>This is the partial for view 1.</p>
+    <p>This is POC for System Properties.</p>
+
+    <uib-tabset active="active">
+        <uib-tab index="0" heading="Admin Tool">Admin Tool Features</uib-tab>
+        <uib-tab ng-repeat="sysProp in systemPropertiesTabs" index="$index + 1" heading="{{sysProp}}">
+            {{sysProp}} Features
+            <div ng-controller="SyspropController" ng-init="init(sysProp)">
+                <div ng-include src="'admintool/sysprop/sysprop.html'"></div>
+            </div>
+        </uib-tab>
+
+    </uib-tabset>
+
 
     <h4>Formatting codes playground</h4>
     <p class="form-group">
@@ -10,3 +22,5 @@
         <label>Result</label>
         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="date" />
     </p>
+
+    <button ng-click="showDate(date)">Show Date</button>

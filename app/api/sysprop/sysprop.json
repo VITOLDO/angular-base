@@ -1,0 +1,7 @@
+[{"key":"unknownClientDelivery", "value":"savein:/u05/unknown_delivery/inv"},
+  {"key":"timeLimitToRunExec", "value":"00:05:00"},
+  {"key":"platformIdentifier", "value":"S"},
+  {"key":"rootDirectory", "value":"/u08/invoice/payloads"},
+  {"key":"directory", "value":"/uo8/invoice/payloads/archive"},
+  {"key":"imageExpirationPeriod", "value":"90"}
+]

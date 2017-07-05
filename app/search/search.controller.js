@@ -7,7 +7,6 @@ angular
         var vm = this;
 
         vm.search = function () {
-            console.log(SearchService)
             SearchService.query(vm.term, function (response) {
                 var results = response.filter(function (item) {
                     return JSON.stringify(item).toLowerCase().includes(vm.term.toLowerCase());

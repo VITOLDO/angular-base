@@ -3,10 +3,12 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
+  'ngSanitize',
   'ui.bootstrap',
-  'ngResource'
+  'ngResource',
+  'ngToast'
 ])
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+.config(function($locationProvider, $routeProvider, ngToastProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider
@@ -25,4 +27,11 @@ angular.module('myApp', [
     })
 
   $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+
+  ngToastProvider.configure({
+    dismissButton: true,
+    dismissOnClick: false,
+    combineDuplications: true,
+    timeout: 6000
+  });
+});
