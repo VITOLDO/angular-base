@@ -6,9 +6,10 @@ angular.module('myApp', [
   'ngSanitize',
   'ui.bootstrap',
   'ngResource',
+  'base64',
   'ngToast'
 ])
-.config(function($locationProvider, $routeProvider, ngToastProvider) {
+.config(function($locationProvider, $routeProvider, $httpProvider, ngToastProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider
@@ -34,4 +35,9 @@ angular.module('myApp', [
     combineDuplications: true,
     timeout: 6000
   });
-});
+})
+.filter('secondsToDateTime', [function() {
+  return function(seconds) {
+      return new Date(1970, 0, 1).setSeconds(seconds);
+  };
+}]);

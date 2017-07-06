@@ -45,6 +45,14 @@ td {
     padding: 8px;
 }
 
-pane {
-    border: 1px;
+.pane {
+    border:1px
+}
+
+.pane .left {
+    padding-right: 200px;
+}
+
+.pane .right {
+    padding-left: 100px;
 }
