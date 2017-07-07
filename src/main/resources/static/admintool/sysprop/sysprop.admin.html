@@ -3,11 +3,11 @@
     <div class="panel-body">
         <div class="form-group form-inline">
             <label class="control-label">History timeout:</label>
-            <input class="form-control" type="text" ng-model="syspropertiesMap['ADM.MN_HISTORY_TIMEOUT']" value="{{syspropertiesMap['ADM.MN_HISTORY_TIMEOUT'] | secondsToDateTime | date:'HH:mm:ss'}}">
+            <input class="form-control" type="text" ng-model="syspropertiesMap['ADM.MN_HISTORY_TIMEOUT']" uib-datepicker-popup="HH:mm:ss">
         </div>
         <div class="form-group form-inline">
             <label class="control-label">User-active timeout:</label>
-            <input class="form-control" type="text" ng-model="syspropertiesMap['ADM.MN_USER_ACTIVE_TIMEOUT']">
+            <input class="form-control" type="text" ng-model="syspropertiesMap['ADM.MN_USER_ACTIVE_TIMEOUT']" uib-datepicker-popup="HH:mm:ss">
         </div>
     </div>
 </div>
