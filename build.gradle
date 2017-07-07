@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.3.RELEASE")
+    }
+}
+
+group 'com.example.admintool'
+
+apply plugin: "java"
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+
+def ivyCommonPattern = "[organisation]/[module]/[revision]/[type]s"
+
+repositories {
+    mavenCentral()
+    ivy {
+        url 'http://tn-repo.kiev.luxoft.com/rest-ivy/repository/'
+        layout "pattern", {
+            artifact "integration/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            artifact "milestone/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            artifact "release/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            artifact "shared/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            ivy "integration/$ivyCommonPattern/ivy-[revision].[ext]"
+            ivy "milestone/$ivyCommonPattern/ivy-[revision].[ext]"
+            ivy "release/$ivyCommonPattern/ivy-[revision].[ext]"
+            ivy "shared/$ivyCommonPattern/ivy-[revision].[ext]"
+        }
+    }
+    ivy {
+        url System.getProperty("userprofile") + "/.ivy2/"
+        layout "pattern", {
+            artifact "cache/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            artifact "cache_release/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            artifact "local/$ivyCommonPattern/[artifact](-[revision]).[ext]"
+            ivy "cache/$ivyCommonPattern/ivy-[revision].[ext]"
+            ivy "cache_release/$ivyCommonPattern/ivy-[revision].[ext]"
+            ivy "local/$ivyCommonPattern/ivy-[revision].[ext]"
+        }
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.3.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '1.4.3.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.4.3.RELEASE'
+
+
+}

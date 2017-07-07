@@ -5,3 +5,6 @@ bower_components/
 tmp
 .DS_Store
 .idea
+build
+.gradle
+src/main/resources/static/bower_components
