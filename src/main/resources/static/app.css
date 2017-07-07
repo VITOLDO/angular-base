@@ -56,3 +56,8 @@ td {
 .pane .right {
     padding-left: 100px;
 }
+
+label {
+    width: 200px;
+    text-align: right;
+}
