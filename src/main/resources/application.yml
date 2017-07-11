@@ -1,2 +1,15 @@
-server:
-  port: 4242
+#spring.ldap.embedded:
+#      ldif: classpath:test-server.ldif
+#      base-dn: dc=springframework,dc=org
+#      port: 636
+ad:
+  domain: dc=example,dc=org
+  url: ldaps://ldaps:636
+https.port: 8443
+keystore:
+  file: classpath:security/keystore.jks
+  password: 123qwe
+  type: JKS
+truststore:
+  file: classpath:security/truststore.jks
+  password: truststore

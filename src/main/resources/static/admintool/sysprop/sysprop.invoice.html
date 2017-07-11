@@ -6,7 +6,7 @@
                     <div class="form-group form-inline">
                         <label class="control-label">Unknown Client´s delivery:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['UNKNOWN CLIENTS EMAIL']"></div>
                     <div class="form-group form-inline">
-                        <label class="control-label">Time limit to run Exec:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING APPLICATION']"></div>
+                        <label class="control-label">Time limit to run Exec:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING APPLICATION']" uib-datepicker-popup="HH:mm:ss"></div>
                     <div class="form-group form-inline">
                         <label class="control-label">Platform identifier:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['PLATFORM ID']"></div>
                     <div class="form-group form-inline">
@@ -50,13 +50,19 @@
         <div class="panel panel-default">
             <div class="panel-heading">Checking new Input and Output frequencies</div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">Time limit to run Pre-Processor:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING PRE-PROCESSOR']"></div>
+                <div class="form-group form-inline">
+                    <label class="control-label">Time limit to run Pre-Processor:</label>
+                    <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING PRE-PROCESSOR']" uib-datepicker-popup="HH:mm:ss">
+                </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">RIF composing</div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">Time limit to run Post-Processor:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING POST-PROCESSOR']"></div>
+                <div class="form-group form-inline">
+                    <label class="control-label">Time limit to run Post-Processor:</label>
+                    <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING POST-PROCESSOR']" uib-datepicker-popup="HH:mm:ss">
+                </div>
             </div>
         </div>
         <div class="panel panel-default">
@@ -75,7 +81,7 @@
             <div class="panel-heading">Configuration cache</div>
             <div class="panel-body">
                 <div class="form-group form-inline"><label class="control-label">Configuration cache size:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CACHE SIZE']"></div>
-                <div class="form-group form-inline"><label class="control-label">Configuration cache timeout:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CACHE TIMEOUT']"></div>
+                <div class="form-group form-inline"><label class="control-label">Configuration cache timeout:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CACHE TIMEOUT']" uib-datepicker-popup="HH:mm:ss"></div>
             </div>
         </div>
 
