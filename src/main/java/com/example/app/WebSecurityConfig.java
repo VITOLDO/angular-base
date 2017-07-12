@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
+import org.springframework.security.ldap.authentication.NullLdapAuthoritiesPopulator;
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
 
 import java.util.Arrays;
@@ -32,10 +33,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().anyRequest()
-                .fullyAuthenticated().and().formLogin();
-                /*.authenticated()
-                    .and().httpBasic();
+                .authorizeRequests()
+                    .anyRequest().authenticated()
+                .and()
+                    .formLogin()
+                .and()
+                    .cors();
+                /*
         http.requiresChannel().anyRequest().requiresSecure();
         http.portMapper().http(8080).mapsTo(8443);*/
     }
@@ -48,18 +52,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         authManagerBuilder
                 .ldapAuthentication()
-                    .userDnPatterns("cn=admin")
-                    .userSearchBase("dc=example,dc=org")
+                    .userDnPatterns("cn={0}")
+                    .userSearchBase("cn=admintool-admin,ou=aws_test")
                     .userSearchFilter("(objectClass=*)")
+                    .groupRoleAttribute("cn")
+//                    .groupSearchBase("ou=aws_test")
                     .contextSource(contextSource())
-                    .passwordCompare()
+                    .ldapAuthoritiesPopulator(new NullLdapAuthoritiesPopulator())
+                    /*.passwordCompare()
                         .passwordEncoder(new LdapShaPasswordEncoder())
-                        .passwordAttribute("userPassword:");
+                        .passwordAttribute("userPassword:")*/;
     }
 
     @Bean
     public DefaultSpringSecurityContextSource contextSource() {
-        return  new DefaultSpringSecurityContextSource(Arrays.asList(AD_URL), AD_DOMAIN);
+        return  new DefaultSpringSecurityContextSource(Arrays.asList(AD_URL), "ou=aws_test," + AD_DOMAIN);
     }
 
     /*@Bean

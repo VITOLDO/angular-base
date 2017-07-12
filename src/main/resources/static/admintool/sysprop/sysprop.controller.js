@@ -21,7 +21,7 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
         vm.thisApp = appId;
 
         vm.syspropertiesMap = {};
-        $resource('http://192.168.99.100:9090/papi/services/system/properties/:id', {id:vm.thisApp})
+        $resource('https://192.168.99.101:9443/papi/services/system/properties/:id', {id:vm.thisApp})
             .query().$promise.then(function(array) {
             array.forEach(function(item) {
                 if (-1 !== dataInMilliseconds.indexOf(item.key)) {
@@ -49,7 +49,7 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
         })
         console.log(requestForSave);
 
-        $resource('http://192.168.99.100:9090/papi/services/system/properties/:id', {id:vm.thisApp}, {'update': {method: 'PUT'}})
+        $resource('https://192.168.99.101:9443/papi/services/system/properties/:id', {id:vm.thisApp}, {'update': {method: 'PUT'}})
             .update(requestForSave).$promise.then(
             function(response){
                 ngToast.create({
