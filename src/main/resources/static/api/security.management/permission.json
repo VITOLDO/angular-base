@@ -1,0 +1,9 @@
+[{
+  "permissionId" : "1",
+  "permissionName" : "System Properties, Read",
+  "permissionCode" : "SYSTEM PROPERTIES, READ"
+},{
+  "permissionId" : "2",
+  "permissionName" : "System Properties, Write",
+  "permissionCode" : "SYSTEM PROPERTIES, WRITE"
+}]
