@@ -13,7 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.authentication.NullLdapAuthoritiesPopulator;
+import org.springframework.security.ldap.authentication.UserDetailsServiceLdapAuthoritiesPopulator;
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
+import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsManager;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsMapper;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsService;
 
 import java.util.Arrays;
 
@@ -53,12 +58,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authManagerBuilder
                 .ldapAuthentication()
                     .userDnPatterns("cn={0}")
-                    .userSearchBase("cn=admintool-admin,ou=aws_test")
-                    .userSearchFilter("(objectClass=*)")
+                    .userSearchBase("ou=aws_test")
+//                    .userSearchFilter("(objectClass=*)")
                     .groupRoleAttribute("cn")
-//                    .groupSearchBase("ou=aws_test")
+                    .groupSearchBase("ou=aws_test")
+                    .groupSearchFilter("(member={0})")
                     .contextSource(contextSource())
-                    .ldapAuthoritiesPopulator(new NullLdapAuthoritiesPopulator())
+                    .ldapAuthoritiesPopulator(new DefaultLdapAuthoritiesPopulator(contextSource(), ""))
+                    .userDetailsContextMapper(new LdapUserDetailsMapper())
                     /*.passwordCompare()
                         .passwordEncoder(new LdapShaPasswordEncoder())
                         .passwordAttribute("userPassword:")*/;
@@ -66,7 +73,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public DefaultSpringSecurityContextSource contextSource() {
-        return  new DefaultSpringSecurityContextSource(Arrays.asList(AD_URL), "ou=aws_test," + AD_DOMAIN);
+        DefaultSpringSecurityContextSource defaultSpringSecurityContextSource = new DefaultSpringSecurityContextSource(Arrays.asList(AD_URL), "ou=aws_test,"+ AD_DOMAIN);
+        defaultSpringSecurityContextSource.setUserDn("cn=admin,dc=example,dc=org");
+        defaultSpringSecurityContextSource.setPassword("admin");
+
+        return defaultSpringSecurityContextSource;
     }
 
     /*@Bean
