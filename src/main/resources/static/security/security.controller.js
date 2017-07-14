@@ -14,11 +14,6 @@ angular
     $scope.allPermissions = $resource('/api/security.management/permission.json').query();
 
     $scope.userSelected = function(item) {
-        ngToast.create({
-            className: 'success',
-            content: 'User selected : ' + item.userName,
-            verticalPosition: 'top',
-            dismissOnTimeout: false
-        });
+        item.showDetails = !item.showDetails;
     }
 };

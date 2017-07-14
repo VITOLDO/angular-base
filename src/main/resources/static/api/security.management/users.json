@@ -3,11 +3,13 @@
   "userName" : "john.smith",
   "firstName" : "John",
   "lastName" : "Smith",
-  "email" : "john.smith@nowhere.com"
+  "email" : "john.smith@nowhere.com",
+  "showDetails" : false
 },{
   "userId" : "2",
   "userName" : "viktor.filonenko",
   "firstName" : "Viktor",
   "lastName" : "Filonenko",
-  "email" : "viktor.filonenko@cool.com"
+  "email" : "viktor.filonenko@cool.com",
+  "showDetails" : false
 }]
