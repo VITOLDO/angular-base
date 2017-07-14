@@ -1,13 +1,13 @@
 [{
-  "user_id" : "1",
-  "user_name" : "john.smith",
-  "first_name" : "John",
-  "last_name" : "Smith",
+  "userId" : "1",
+  "userName" : "john.smith",
+  "firstName" : "John",
+  "lastName" : "Smith",
   "email" : "john.smith@nowhere.com"
 },{
-  "user_id" : "2",
-  "user_name" : "viktor.filonenko",
-  "first_name" : "Viktor",
-  "last_name" : "Filonenko",
+  "userId" : "2",
+  "userName" : "viktor.filonenko",
+  "firstName" : "Viktor",
+  "lastName" : "Filonenko",
   "email" : "viktor.filonenko@cool.com"
 }]

@@ -17,9 +17,9 @@ angular.module('myApp', [
         templateUrl: 'view1/view1.html',
         controller: 'View1Ctrl'
     })
-    .when('/view2', {
-        templateUrl: 'view2/view2.html',
-        controller: 'View2Ctrl'
+    .when('/security', {
+        templateUrl: 'security/security.html',
+        controller: 'SecurityCtrl'
     })
     .when('/search', {
         templateUrl: 'search/search.html',
