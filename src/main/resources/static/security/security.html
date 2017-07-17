@@ -3,30 +3,74 @@
 <uib-tabset active="active">
   <uib-tab heading="Users">
     <div>
-      <p>Here should be a list </p>
 
-      <table class="table table-striped table-hover table-bordered">
-        <thead>
-          <tr>
-            <th>User Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="user in allUsers" ng-click="userSelected(user)">
-            <td>{{user.userName}}</td>
-            <td>{{user.firstName}}</td>
-            <td>{{user.lastName}}</td>
-            <td>{{user.email}}</td>
-            <div uib-collapse="!user.showDetails">
-              show groups here!
-            </div>
-          </tr>
+      <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#footwear" aria-expanded="false" aria-controls="footwear" ng-show="selectedUser !== null">
+        Selected User is {{selectedUser.userName}}. Show others?
+      </button>
 
-        </tbody>
-      </table>
+      <div id="footwear">
+        <table class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>User Name</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="user in allUsers" ng-click="userSelected(user)" data-toggle="collapse" data-target="#footwear" aria-expanded="false" aria-controls="footwear">
+              <td>{{user.userName}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.email}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="col-xs-5">
+
+          <p>Roles assigned to User</p>
+
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>Group Name</th>
+                <th>Group Code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="group in userGroups | filter:{assigned:true}" ng-click="assignGroupToUser(group, false)">
+                <td>{{group.groupName}}</td>
+                <td>{{group.groupNote}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-5">
+
+          <p>Roles not assigned to User</p>
+
+          <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <tr>
+              <th>Group Name</th>
+              <th>Group Code</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="group in userGroups | filter:{assigned:false}" ng-click="assignGroupToUser(group, true)">
+              <td>{{group.groupName}}</td>
+              <td>{{group.groupNote}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </uib-tab>
   <uib-tab heading="Groups">

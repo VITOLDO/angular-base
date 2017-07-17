@@ -1,0 +1,15 @@
+[
+  {
+    "groupId" : "1",
+    "groupName" : "Administrator",
+    "groupNote" : "System Administrator",
+    "assigned" : true
+  },
+  {
+
+    "groupId" : "2",
+    "groupName" : "Support",
+    "groupNote" : "Read only access for Support and Implementation",
+    "assigned" : true
+  }
+]
