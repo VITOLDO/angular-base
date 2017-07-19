@@ -1,7 +1,8 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var permissionList;
+var app = angular.module('myApp', [
   'ngRoute',
   'ngSanitize',
   'ui.bootstrap',
@@ -9,7 +10,14 @@ angular.module('myApp', [
   'base64',
   'ngToast'
 ])
-.config(function($locationProvider, $routeProvider, $httpProvider, ngToastProvider) {
+    .config(config)
+    .run(runBlock)
+    .factory('permissions', permissions)
+    .filter('secondsToDateTime', [secondsToDateTime]);
+
+config.$inject = ['$locationProvider', '$routeProvider', '$httpProvider', 'ngToastProvider'];
+
+function config($locationProvider, $routeProvider, $httpProvider, ngToastProvider) {
   $locationProvider.hashPrefix('!');
 
   $routeProvider
@@ -35,9 +43,45 @@ angular.module('myApp', [
     combineDuplications: true,
     timeout: 6000
   });
-})
-.filter('secondsToDateTime', [function() {
-  return function(seconds) {
-      return new Date(1970, 0, 1).setSeconds(seconds);
-  };
-}]);
+}
+
+function secondsToDateTime() {
+    return function(seconds) {
+        return new Date(1970, 0, 1).setSeconds(seconds);
+    };
+}
+
+runBlock.$inject = ['permissions'];
+
+function runBlock(permissions) {
+    $.get('/user/roles', function(data) {
+        permissionList = data;
+    });
+    permissions.setPermissions(permissionList);
+};
+
+permissions.$inject = ['$rootScope'];
+
+function permissions($rootScope) {
+    var permissionList = [];
+    var service = {
+        setPermissions: setPermissions,
+        hasPermission: hasPermission
+    }
+    return service;
+
+    function setPermissions(permissions) {
+        permissionList = permissions;
+        $rootScope.$broadcast('permissionChanged');
+    }
+
+    function hasPermission(permission) {
+        permission = permission.trim();
+        return permissionList.some(item => {
+            if (typeof item.Name !== 'string') {
+                return false;
+            }
+            return item.Name.trim() === permission;
+        })
+    }
+}

@@ -42,7 +42,7 @@
           <li><a href="#!/search">Requests</a></li>
           <li><a href="#!/todo">Schedulers</a></li>
           <li><a href="#!/todo">Monitoring</a></li>
-          <li><a href="#!/todo">Logging</a></li>
+          <li has-permission="SYSTEM PROPERTIES, WRITE"><a href="#!/todo" >Logging</a></li>
           <li><a href="#!/todo">Registry Manager</a></li>
 
           <li class="dropdown">
@@ -92,9 +92,11 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-base64/angular-base64.js"></script>
   <script src="bower_components/ngtoast/dist/ngToast.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
   <script src="app.js"></script>
   <script src="view1/view1.js"></script>
   <script src="security/security.controller.js"></script>
+  <script src="security/hasPermission.js"></script>
   <script src="search/search.service.js"></script>
   <script src="search/search.controller.js"></script>
   <script src="admintool/sysprop/sysprop.controller.js"></script>

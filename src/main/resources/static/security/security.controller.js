@@ -9,7 +9,6 @@ angular
 
     var thisScope = $scope;
     $scope.selectedUser = null;
-    $scope.notInUserGroups = {};
 
     $('#timeInput').mask('00:00:00.000')
 
@@ -23,13 +22,14 @@ angular
     }
 
     $scope.assignGroupToUser = function(group, assigned) {
+        group.assigned = assigned;
+    }
 
-
-
+    $scope.saveUserGroups = function(user, groups) {
         ngToast.create({
-            className: 'success',
-            content: "Here should be method to " +  (assigned? "add" : "remove") + " group " + group.groupName + " for User " + $scope.selectedUser.userName,
-            verticalPosition: 'top',
-            dismissOnTimeout: false});
+           className: 'success',
+           content: "User with : " + user.userName + " should be updated with following groups : " + groups,
+           verticalPosition: 'top',
+           dismissOnTimeout: false});
     }
 };
