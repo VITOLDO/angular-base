@@ -1,4 +1,8 @@
-angular.module('myApp').directive('hasPermission', hasPermission)
+angular.module('myApp')
+    .directive('hasPermission', hasPermission)
+
+hasPermission.$inject = ['permissions']
+
 function hasPermission(permissions) {
   return {
     link: function(scope, element, attrs) {

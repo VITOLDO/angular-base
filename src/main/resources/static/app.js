@@ -1,7 +1,14 @@
-'use strict';
+//'use strict';
+
+var permissionList;
+angular.element(document).ready(function() {
+  $.get('/user/roles', function(data) {
+    permissionList = data;
+    angular.bootstrap(document, ['myApp']);
+  });
+});
 
 // Declare app level module which depends on views, and components
-var permissionList;
 var app = angular.module('myApp', [
   'ngRoute',
   'ngSanitize',
@@ -11,9 +18,8 @@ var app = angular.module('myApp', [
   'ngToast'
 ])
     .config(config)
-    .run(runBlock)
     .factory('permissions', permissions)
-    .filter('secondsToDateTime', [secondsToDateTime]);
+    .filter('secondsToDateTime', secondsToDateTime);
 
 config.$inject = ['$locationProvider', '$routeProvider', '$httpProvider', 'ngToastProvider'];
 
@@ -51,14 +57,9 @@ function secondsToDateTime() {
     };
 }
 
-runBlock.$inject = ['permissions'];
-
-function runBlock(permissions) {
-    $.get('/user/roles', function(data) {
-        permissionList = data;
-    });
-    permissions.setPermissions(permissionList);
-};
+app.run(function(permissions) {
+  permissions.setPermissions(permissionList);
+});
 
 permissions.$inject = ['$rootScope'];
 
@@ -78,10 +79,7 @@ function permissions($rootScope) {
     function hasPermission(permission) {
         permission = permission.trim();
         return permissionList.some(item => {
-            if (typeof item.Name !== 'string') {
-                return false;
-            }
-            return item.Name.trim() === permission;
+            return item.trim() === permission;
         })
     }
 }
