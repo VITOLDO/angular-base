@@ -57,5 +57,5 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-tx'
     compile group: 'com.unboundid', name: 'unboundid-ldapsdk'
 
-
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
