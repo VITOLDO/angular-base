@@ -4,11 +4,11 @@
             <div class="panel-heading"> System Properties</div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Unknown Client´s delivery:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.UNKNOWN CLIENTS EMAIL']"></div>
+                    <label class="control-label">Unknown Client´s delivery:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.UNKNOWN CLIENTS EMAIL']"></div>
                 <div class="form-group form-inline">
-                    <label class="control-label">Time limit to run Exec:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.RUNNING APPLICATION']" uib-datepicker-popup="HH:mm:ss"></div>
+                    <label class="control-label">Time limit to run Exec:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.RUNNING APPLICATION']" uib-datepicker-popup="HH:mm:ss"></div>
                 <div class="form-group form-inline">
-                    <label class="control-label">Platform identifier:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.PLATFORM ID']"></div>
+                    <label class="control-label">Platform identifier:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.PLATFORM ID']"></div>
             </div>
         </div>
 
@@ -19,9 +19,9 @@
             <div class="panel-heading"> Mail </div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Email from:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.EMAIL FROM']"></div>
+                    <label class="control-label">Email from:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.EMAIL FROM']"></div>
                 <div class="form-group form-inline">
-                    <label class="control-label">Email Reply-to:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.EMAIL REPLY-TO']"></div>
+                    <label class="control-label">Email Reply-to:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.EMAIL REPLY-TO']"></div>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             <div class="panel-heading"> File </div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Input file maximum size:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.INPUT_FILE_SIZE_MAX']"></div>
+                    <label class="control-label">Input file maximum size:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.INPUT_FILE_SIZE_MAX']"></div>
             </div>
         </div>
     </div>
@@ -39,23 +39,23 @@
             <div class="panel-heading">Checking new Input and Output frequencies</div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Time limit to run Pre-Processor:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.RUNNING PRE-PROCESSOR']" uib-datepicker-popup="HH:mm:ss"></div>
+                    <label class="control-label">Time limit to run Pre-Processor:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.RUNNING PRE-PROCESSOR']" uib-datepicker-popup="HH:mm:ss"></div>
             </div>
         </div>
         <div class="panel panel-default" ng-show="false">
             <div class="panel-heading">Directories</div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Rules directory:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['xxx']"></div>
+                    <label class="control-label">Rules directory:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['xxx']"></div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Configuration cache</div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Configuration cache size:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.CACHE SIZE']"></div>
+                    <label class="control-label">Configuration cache size:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.CACHE SIZE']"></div>
                 <div class="form-group form-inline">
-                    <label class="control-label">Configuration cache timeout:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CDU.CACHE TIMEOUT']" uib-datepicker-popup="HH:mm:ss"></div>
+                    <label class="control-label">Configuration cache timeout:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CDU.CACHE TIMEOUT']" uib-datepicker-popup="HH:mm:ss"></div>
             </div>
         </div>
 

@@ -11,14 +11,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.authentication.NullLdapAuthoritiesPopulator;
 import org.springframework.security.ldap.authentication.UserDetailsServiceLdapAuthoritiesPopulator;
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
-import org.springframework.security.ldap.userdetails.DefaultLdapAuthoritiesPopulator;
-import org.springframework.security.ldap.userdetails.LdapUserDetailsManager;
-import org.springframework.security.ldap.userdetails.LdapUserDetailsMapper;
-import org.springframework.security.ldap.userdetails.LdapUserDetailsService;
+import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
+import org.springframework.security.ldap.userdetails.*;
 
 import java.util.Arrays;
 
@@ -51,36 +50,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
-        /*authManagerBuilder
-                .authenticationProvider(activeDirectoryLdapAuthenticationProvider())
-                .userDetailsService(userDetailsService());*/
-
         authManagerBuilder
+                .authenticationProvider(activeDirectoryLdapAuthenticationProvider())
+                .userDetailsService(userDetailsService());
+
+        /*authManagerBuilder
                 .ldapAuthentication()
                     .userDnPatterns("cn={0}")
                     .userSearchBase("ou=aws_test")
-//                    .userSearchFilter("(objectClass=*)")
                     .groupRoleAttribute("cn")
                     .groupSearchBase("ou=aws_test")
                     .groupSearchFilter("(member={0})")
                     .contextSource(contextSource())
                     .ldapAuthoritiesPopulator(new DefaultLdapAuthoritiesPopulator(contextSource(), ""))
                     .userDetailsContextMapper(new LdapUserDetailsMapper())
-                    /*.passwordCompare()
+                    .passwordCompare()
                         .passwordEncoder(new LdapShaPasswordEncoder())
                         .passwordAttribute("userPassword:")*/;
     }
 
-    @Bean
+    /*@Bean
     public DefaultSpringSecurityContextSource contextSource() {
         DefaultSpringSecurityContextSource defaultSpringSecurityContextSource = new DefaultSpringSecurityContextSource(Arrays.asList(AD_URL), "ou=aws_test,"+ AD_DOMAIN);
         defaultSpringSecurityContextSource.setUserDn("cn=admin,dc=example,dc=org");
         defaultSpringSecurityContextSource.setPassword("admin");
 
         return defaultSpringSecurityContextSource;
-    }
+    }*/
 
-    /*@Bean
+    @Bean
     public AuthenticationManager authenticationManager() {
         return new ProviderManager(Arrays.asList(activeDirectoryLdapAuthenticationProvider()));
     }
@@ -90,7 +88,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         ActiveDirectoryLdapAuthenticationProvider provider = new ActiveDirectoryLdapAuthenticationProvider(AD_DOMAIN, AD_URL);
         provider.setConvertSubErrorCodesToExceptions(true);
         provider.setUseAuthenticationRequestCredentials(true);
+        provider.setUserDetailsContextMapper(new InetOrgPersonContextMapper());
 
         return provider;
-    }*/
+    }
 }

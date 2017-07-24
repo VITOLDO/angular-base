@@ -4,17 +4,17 @@
             <div class="panel-heading"> System Properties</div>
                 <div class="panel-body">
                     <div class="form-group form-inline">
-                        <label class="control-label">Unknown Client´s delivery:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['UNKNOWN CLIENTS EMAIL']"></div>
+                        <label class="control-label">Unknown Client´s delivery:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['UNKNOWN CLIENTS EMAIL']"></div>
                     <div class="form-group form-inline">
-                        <label class="control-label">Time limit to run Exec:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING APPLICATION']" uib-datepicker-popup="HH:mm:ss"></div>
+                        <label class="control-label">Time limit to run Exec:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['RUNNING APPLICATION']" uib-datepicker-popup="HH:mm:ss"></div>
                     <div class="form-group form-inline">
-                        <label class="control-label">Platform identifier:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['PLATFORM ID']"></div>
+                        <label class="control-label">Platform identifier:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['PLATFORM ID']"></div>
                     <div class="form-group form-inline">
-                        <label class="control-label">Root directory for payload file service:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['I.PAYLOAD_FILE_SERVICE_ROOT_DIR']"></div>
+                        <label class="control-label">Root directory for payload file service:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['I.PAYLOAD_FILE_SERVICE_ROOT_DIR']"></div>
                     <div class="form-group form-inline">
-                        <label class="control-label">Directory for storing archived payloads:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['I.PAYLOAD_FILE_SERVICE_ARCHIVE_DIR']"></div>
+                        <label class="control-label">Directory for storing archived payloads:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['I.PAYLOAD_FILE_SERVICE_ARCHIVE_DIR']"></div>
                     <div class="form-group form-inline">
-                        <label class="control-label">Image Expiration Period:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['IMAGE_EXPIRATION_PERIOD']"></div>
+                        <label class="control-label">Image Expiration Period:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['IMAGE_EXPIRATION_PERIOD']"></div>
                 </div>
         </div>
 
@@ -25,23 +25,23 @@
             <div class="panel-heading"> Mail </div>
             <div class="panel-body">
                 <div class="form-group form-inline">
-                    <label class="control-label">Email from:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['EMAIL FROM']"></div>
+                    <label class="control-label">Email from:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['EMAIL FROM']"></div>
                 <div class="form-group form-inline">
-                    <label class="control-label">Email Reply-to:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['EMAIL REPLY-TO']"></div>
+                    <label class="control-label">Email Reply-to:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['EMAIL REPLY-TO']"></div>
             </div>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-heading"> File </div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">Input file maximum size:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['INPUT_FILE_SIZE_MAX']"></div>
+                <div class="form-group form-inline"><label class="control-label">Input file maximum size:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['INPUT_FILE_SIZE_MAX']"></div>
             </div>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-heading"> Threshold Values</div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">RF threshold value:</label><input class="form-control" type="text" ng-model="syspropertiesMap['I.RF_THRESHOLD_VALUE']"></div>
+                <div class="form-group form-inline"><label class="control-label">RF threshold value:</label><input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['I.RF_THRESHOLD_VALUE']"></div>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
             <div class="panel-body">
                 <div class="form-group form-inline">
                     <label class="control-label">Time limit to run Pre-Processor:</label>
-                    <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING PRE-PROCESSOR']" uib-datepicker-popup="HH:mm:ss">
+                    <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['RUNNING PRE-PROCESSOR']" uib-datepicker-popup="HH:mm:ss">
                 </div>
             </div>
         </div>
@@ -61,27 +61,27 @@
             <div class="panel-body">
                 <div class="form-group form-inline">
                     <label class="control-label">Time limit to run Post-Processor:</label>
-                    <input class="form-control" type="text" ng-model="syspropertiesMap['RUNNING POST-PROCESSOR']" uib-datepicker-popup="HH:mm:ss">
+                    <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['RUNNING POST-PROCESSOR']" uib-datepicker-popup="HH:mm:ss">
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Notifications</div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">History period:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['HISTORY PERIOD']"></div>
+                <div class="form-group form-inline"><label class="control-label">History period:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['HISTORY PERIOD']"></div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Directories</div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">Rules directory:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['RULES DIRECTORY']"></div>
+                <div class="form-group form-inline"><label class="control-label">Rules directory:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['RULES DIRECTORY']"></div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Configuration cache</div>
             <div class="panel-body">
-                <div class="form-group form-inline"><label class="control-label">Configuration cache size:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CACHE SIZE']"></div>
-                <div class="form-group form-inline"><label class="control-label">Configuration cache timeout:</label> <input class="form-control" type="text" ng-model="syspropertiesMap['CACHE TIMEOUT']" uib-datepicker-popup="HH:mm:ss"></div>
+                <div class="form-group form-inline"><label class="control-label">Configuration cache size:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CACHE SIZE']"></div>
+                <div class="form-group form-inline"><label class="control-label">Configuration cache timeout:</label> <input ng-readonly="!main.hasPermission('SYSTEM PROPERTIES, WRITE')" class="form-control" type="text" ng-model="syspropertiesMap['CACHE TIMEOUT']" uib-datepicker-popup="HH:mm:ss"></div>
             </div>
         </div>
 

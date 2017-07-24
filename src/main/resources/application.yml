@@ -3,8 +3,10 @@
 #      base-dn: dc=springframework,dc=org
 #      port: 636
 ad:
-  domain: dc=example,dc=org
-  url: ldaps://ldaps:636
+#  domain: dc=auto0,dc=nifi,dc=ml
+  domain: auto0.nifi.ml
+  url: ldaps://10.216.20.184:636
+  authority.admintool: ZeppelinAdmins
 https.port: 8443
 keystore:
   file: classpath:security/keystore.jks

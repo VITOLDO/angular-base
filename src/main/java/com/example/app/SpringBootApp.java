@@ -1,10 +1,11 @@
 package com.example.app;
 
-import com.unboundid.ldap.sdk.LDAPException;
 import org.apache.coyote.http11.Http11NioProtocol;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
@@ -19,17 +20,18 @@ import java.security.GeneralSecurityException;
  * Created by vfilonenko on 07.07.2017.
  */
 @SpringBootApplication
-public class SpringBootApp extends SpringBootServletInitializer {
+//@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+public class SpringBootApp /*extends SpringBootServletInitializer*/ {
 
     @Value("${keystore.file}") Resource keystoreFile;
     @Value("${truststore.file}") Resource trustFile;
 
-    @Override
+    /*@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(SpringBootApp.class);
-    }
+    }*/
 
-    public static void main(String[] args) throws LDAPException, GeneralSecurityException {
+    public static void main(String[] args) throws GeneralSecurityException {
         SpringApplication.run(SpringBootApp.class, args);
     }
 
