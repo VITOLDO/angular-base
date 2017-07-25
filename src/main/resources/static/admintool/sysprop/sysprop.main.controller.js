@@ -2,9 +2,11 @@
 
 angular
     .module('myApp')
-    .controller('View1Ctrl', View1Ctrl);
+    .controller('SyspropMainCtrl', SyspropMainCtrl);
 
-function View1Ctrl($scope, uibDateParser, ngToast) {
+SyspropMainCtrl.$inject = ['$scope', 'uibDateParser', 'ngToast']
+
+function SyspropMainCtrl($scope, uibDateParser, ngToast) {
     ngToast.dismiss();
 
     $scope.format = 'HH:mm:ss.sss';

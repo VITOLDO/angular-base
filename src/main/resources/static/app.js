@@ -27,9 +27,13 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
   $locationProvider.hashPrefix('!');
 
   $routeProvider
-    .when('/view1', {
-        templateUrl: 'view1/view1.html',
-        controller: 'View1Ctrl'
+    .when('/home', {
+        templateUrl: 'home/home.html',
+        controller: 'HomeCtrl'
+    })
+    .when('/system-properties', {
+        templateUrl: 'admintool/sysprop/sysprop.main.html',
+        controller: 'SyspropMainCtrl'
     })
     .when('/security', {
         templateUrl: 'security/security.html',
@@ -41,7 +45,7 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
         controllerAs: 'vm'
     })
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/home'});
 
   ngToastProvider.configure({
     dismissButton: true,
