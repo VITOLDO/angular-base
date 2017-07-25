@@ -18,6 +18,7 @@ import org.springframework.security.ldap.authentication.UserDetailsServiceLdapAu
 import org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider;
 import org.springframework.security.ldap.search.FilterBasedLdapUserSearch;
 import org.springframework.security.ldap.userdetails.*;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.Arrays;
 
@@ -41,6 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
+                .and()
+                    .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
                 .and()
                     .cors();
                 /*
