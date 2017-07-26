@@ -9,22 +9,16 @@
     <div class="navbar-collapse collapse" style="padding:5px" id="navbar">
 
         <ul class="nav navbar-nav">
-            <li ng-repeat="link in navctrl.actions">
-                <a href="{{link.url}}">{{link.title}}<span ng-if="link.type == 'group'" class="caret"></span></a>
-            </li>
-            <li><a href="#!/todo">Schedulers</a></li>
-            <li><a href="#!/todo">Monitoring</a></li>
-            <!--<li has-permission="SYSTEM PROPERTIES, WRITE"><a href="#!/todo" >Logging</a></li>-->
-            <!--<li ng-show="main.hasPermission('SYSTEM PROPERTIES, WRITE')"><a href="#!/todo">Registry Manager</a></li>-->
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
-                <ul class="dropdown-menu" aria-labelledby="about-us">
-                    <li><a href="#">Engage</a></li>
-                    <li><a href="#">Pontificate</a></li>
-                    <li><a href="#">Synergize</a></li>
+            <li ng-repeat="link in navctrl.actions" class="{{link.type == 'group' ? 'dropdown' : ''}}">
+                <a ng-if="link.type !== 'group'" href="{{link.url}}">{{link.title}}</span></a>
+                <a ng-if="link.type == 'group'" href="{{link.url}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{link.title}}<span class="caret"></span></a>
+                <ul ng-if="link.type == 'group'" class="dropdown-menu" aria-labelledby="about-us">
+                    <li ng-repeat="sublink in link.group"><a href="{{sublink.url}}">{{sublink.title}}</a></li>
                 </ul>
             </li>
+
+            <!--<li has-permission="SYSTEM PROPERTIES, WRITE"><a href="#" >Logging</a></li>-->
+            <!--<li ng-show="main.hasPermission('SYSTEM PROPERTIES, WRITE')"><a href="#">Registry Manager</a></li>-->
         </ul>
 
         <form class="navbar-form navbar-right">
