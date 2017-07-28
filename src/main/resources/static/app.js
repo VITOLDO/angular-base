@@ -43,10 +43,16 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
         templateUrl: 'requests/requests.html',
         controller: 'RequestsCtrl'
     })
-    .when('/requests/invoice', {
-        templateUrl: 'requests/invoice/invoice.html',
-        controller: 'RequestCtrl'
-    })
+        .when('/requests/invoice', {
+            templateUrl: 'requests/invoice/invoice.html',
+            controller: 'RequestCtrl',
+            controllerAs: 'requestCtrl'
+        })
+            .when('/requests/invoice/reprocess', {
+                templateUrl: 'requests/invoice/reprocess.request.html',
+                controller: 'RequestCtrl',
+                action: {html:'reprocess.request.html', title:'Reprocess Request'}
+            })
     .when('/requests/ip', {
         templateUrl: 'requests/ip/ip.html',
         controller: 'RequestCtrl'

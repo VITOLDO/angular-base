@@ -7,9 +7,9 @@ angular
 function RequestsCtrl() {
     var vm = this;
 
-    vm.actions = [{action:'Cache Clean', url:'/papi/invoice/cacheClean'},
-        {action:'Request Deletion', url:'/papi/invoice/deleteRequest'},
-        {action:'Notification List', url:'/papi/invoice/notificationList'},
-        {action:'Repeating File Delivery', url:'/papi/invoice/repeatingFileDelivery'},
-        {action:'Reprocess Request', url:'/papi/invoice/reprocessRequest'}]
+    vm.items = [{id:',', label:'Comma(,)'},
+        {id:'\t', label:'Tab(\\t)'},
+        {id:'\n', label:'New Line(\\n)'},
+        {id:':', label:'Colon(:)'},
+        {id:';', label:'Semicolon(;)'}]
 }

@@ -16,6 +16,7 @@ function NavbarCtrl() {
             {title:'Invoice Payment', url:'#!/requests/ip', type:'link'},
             {title:'Purchase Order', url:'#!/requests/po', type:'link'},
             {title:'Client Data Update', url:'#!/requests/cdu', type:'link'}]},
+        {title:'Schedulers', url:'#', type:'link'},
         {title:'Monitoring', url:'#', type:'group', group: [
             {title:'Invoice', url:'#', type:'link'},
             {title:'Invoice Payment', url:'#', type:'link'},

@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <div class="panel-heading"> Reprocess Request </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group form-inline">
+                <label>Sender OBX Identifier(s):</label>
+                <input type="text" class="form-control" id="senderObxInput" ng-model="search.senderObx.input">
+                <input type="file" class="form-control" id="senderObxFile" ng-model="search.senderObx.file">
+                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.senderObx.type"></select>
+            </div>
+            <div class="form-group form-inline">
+                <label>Buyer OBX Identifier(s):</label>
+                <input type="text" class="form-control" id="buyerObxInput" ng-model="search.buyerObx.input">
+                <input type="file" class="form-control" id="buyerObxFile" ng-model="search.buyerObx.file">
+                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.buyerObx.type"></select>
+            </div>
+            <div class="form-group form-inline">
+                <label>Buyer File Id(s):</label>
+                <input type="text" class="form-control" id="buyerFileIdInput" ng-model="search.buyerFile.input">
+                <input type="file" class="form-control" id="buyerFileIdFile" ng-model="search.buyerFile.file">
+                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.buyerFile.type"></select>
+            </div>
+            <div class="form-group form-inline">
+                <label>Buyer File Name:</label>
+                <input type="text" class="form-control" id="buyerFileNameInput"  ng-model="search.buyerFileName.input">
+            </div>
+            <div class="form-group form-inline">
+                <label>Invoice Number(s):</label>
+                <input type="text" class="form-control" id="invoiceNumberInput" ng-model="search.invoiceNumber.input">
+                <input type="file" class="form-control" id="invoiceNumberFile" ng-model="search.invoiceNumber.file">
+                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.invoiceNumber.type"></select>
+            </div>
+            <div class="form-group form-inline">
+                <label>Transaction Number(s):</label>
+                <input type="text" class="form-control" id="transactionNumberInput" ng-model="search.transactionNumber.input">
+                <input type="file" class="form-control" id="transactionNumberFile" ng-model="search.transactionNumber.file">
+                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.transactionNumber.type"></select>
+            </div>
+            <button class="btn btn-primary" ng-click="vm.reprocessRequest(search)">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"> Reprocess Request Search Result </div>
+    <div class="panel-body">
+
+    </div>
+</div>

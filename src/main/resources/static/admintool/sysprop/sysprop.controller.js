@@ -19,6 +19,7 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
 
     vm.init = function(appId) {
         //get proper resource data with appId
+        vm.loading = true;
         vm.thisApp = appId;
 
         vm.syspropertiesMap = {};
@@ -36,7 +37,7 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
                content: "System module 'get' sent an error : " + error,
                verticalPosition: 'top',
                dismissOnTimeout: false})
-       })
+       }).finally(function(){vm.loading = false})
     }
 
     vm.save = function(data) {
