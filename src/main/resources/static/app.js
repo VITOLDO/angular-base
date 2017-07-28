@@ -39,6 +39,26 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
         templateUrl: 'security/security.html',
         controller: 'SecurityCtrl'
     })
+    .when('/requests', {
+        templateUrl: 'requests/requests.html',
+        controller: 'RequestsCtrl'
+    })
+    .when('/requests/invoice', {
+        templateUrl: 'requests/invoice/invoice.html',
+        controller: 'RequestCtrl'
+    })
+    .when('/requests/ip', {
+        templateUrl: 'requests/ip/ip.html',
+        controller: 'RequestCtrl'
+    })
+    .when('/requests/po', {
+        templateUrl: 'requests/po/po.html',
+        controller: 'RequestCtrl'
+    })
+    .when('/requests/cdu', {
+        templateUrl: 'requests/cdu/cdu.html',
+        controller: 'RequestCtrl'
+    })
     .when('/search', {
         templateUrl: 'search/search.html',
         controller: 'SearchController',

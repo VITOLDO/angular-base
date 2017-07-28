@@ -1,6 +1,4 @@
 
-    <p>This is POC for System Properties.</p>
-
     <uib-tabset active="active">
         <uib-tab ng-repeat="(k,v) in systemPropertiesTabs" index="$index + 1" heading="{{v.title}}">
             <div ng-controller="SyspropController" ng-init="init(v.appId)">

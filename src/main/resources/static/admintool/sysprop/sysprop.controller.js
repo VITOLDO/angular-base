@@ -4,6 +4,7 @@ angular
     .module('myApp')
     .controller('SyspropController', SyspropController) ;
 
+SyspropController.$inject = ['$resource', '$scope', '$http', '$base64', 'ngToast'];
 
 function SyspropController($resource, $scope, $http, $base64, ngToast) {
     ngToast.dismiss();
@@ -21,24 +22,25 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
         vm.thisApp = appId;
 
         vm.syspropertiesMap = {};
-        $resource('https://papi:9443/papi/services/system/properties/:id', {id:vm.thisApp})
-            .query().$promise.then(function(array) {
-            array.forEach(function(item) {
-                if (-1 !== dataInMilliseconds.indexOf(item.key)) {
-                    vm.syspropertiesMap[item.key] = new Date(1970, 0, 1).setSeconds(item.value/1000);
-                } else {
-                    vm.syspropertiesMap[item.key] = item.value;
-                }
-            })
+        $http.get('https://papi:9443/papi/services/system/properties/' + vm.thisApp).then(function(response){
+            response.data
+                .forEach(function(item) {
+                     if (-1 !== dataInMilliseconds.indexOf(item.key)) {
+                         vm.syspropertiesMap[item.key] = new Date(1970, 0, 1).setSeconds(item.value/1000);
+                     } else {
+                         vm.syspropertiesMap[item.key] = item.value;
+                     }
+                })
         }, function(error) {
-            ngToast.danger({
-                content: "System module 'get' sent an error : " + error,
-                verticalPosition: 'top',
-                dismissOnTimeout: false})
-        });
+           ngToast.danger({
+               content: "System module 'get' sent an error : " + error,
+               verticalPosition: 'top',
+               dismissOnTimeout: false})
+       })
     }
 
     vm.save = function(data) {
+        vm.loading = true;
         var requestForSave = [];
         angular.forEach(data, function(value,key) {
             if (-1 !== dataInMilliseconds.indexOf(key)) {
@@ -47,24 +49,25 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
                 requestForSave.push({"key":key, "value":value})
             }
         })
-        console.log(requestForSave);
 
-        $resource('https://papi:9443/papi/services/system/properties/:id', {id:vm.thisApp}, {'update': {method: 'PUT'}})
-            .update(requestForSave).$promise.then(
-            function(response){
-                ngToast.create({
-                    className: 'success',
-                    content: "System module 'update' sent success : " + response,
-                    verticalPosition: 'top',
-                    dismissOnTimeout: false});
-            },
-            function(error){
-                console.log(error)
-                ngToast.danger({
-                    content: "System module 'update' sent an error : " + error,
-                    verticalPosition: 'top',
-                    dismissOnTimeout: false});
-            })
+        $http
+            .put('https://papi:9443/papi/services/system/properties/' + vm.thisApp, requestForSave)
+            .then(function(response){
+                    ngToast.create({
+                        className: 'success',
+                        content: "System properties 'update' was successful : " + response,
+                        verticalPosition: 'top',
+                        dismissOnTimeout: false});
+                },
+                function(error){
+                    console.log(error)
+                    ngToast.create({
+                        className: 'danger',
+                        content: "System properties 'update' in error state : " + error,
+                        verticalPosition: 'top',
+                        dismissOnTimeout: false});
+                },
+                function(notification){vm.loading = false})
     }
 
     angular.element(document).ready(function () {
