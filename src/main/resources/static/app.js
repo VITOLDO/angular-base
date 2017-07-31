@@ -19,7 +19,29 @@ var app = angular.module('myApp', [
 ])
     .config(config)
     .factory('permissions', permissions)
-    .filter('secondsToDateTime', secondsToDateTime);
+    .filter('secondsToDateTime', secondsToDateTime) /*Refactor directive*/
+    .directive('fileInput', ['$parse',function($parse){
+        return {
+            restrict: 'A',
+            scope: {fileInput: "="},
+            link: function(scope, elm, attr){
+                elm.bind('change',function(changeEvent){
+                    var reader = new FileReader();
+                    reader.onload = function (loadEvent) {
+                        scope.$apply(function () {
+                            scope.fileInput = loadEvent.target.result;
+                        });
+                    }
+                    if (changeEvent.target.files.length > 0) {
+                        reader.readAsText(changeEvent.target.files[0]);
+                    } else {
+                        scope.fileInput = undefined;
+                        scope.$apply();
+                    }
+                });
+            }
+        }
+    }]);
 
 config.$inject = ['$locationProvider', '$routeProvider', '$httpProvider', 'ngToastProvider'];
 
@@ -45,12 +67,13 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
     })
         .when('/requests/invoice', {
             templateUrl: 'requests/invoice/invoice.html',
-            controller: 'RequestCtrl',
-            controllerAs: 'requestCtrl'
+            controller: 'RequestsCtrl',
+            controllerAs: 'requestsCtrl'
         })
             .when('/requests/invoice/reprocess', {
-                templateUrl: 'requests/invoice/reprocess.request.html',
-                controller: 'RequestCtrl',
+                templateUrl: 'requests/invoice/invoice.request.template.html',
+                controller: 'RequestsCtrl',
+                controllerAs: 'requestsCtrl',
                 action: {html:'reprocess.request.html', title:'Reprocess Request'}
             })
     .when('/requests/ip', {

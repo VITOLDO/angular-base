@@ -55,7 +55,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-freemarker', version: '1.4.3.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.4.3.RELEASE'
 
-    providedCompile group: 'org.springframework', name: 'spring-tx'
+    compile group: 'org.springframework', name: 'spring-tx'
 
 //    compile group: 'com.unboundid', name: 'unboundid-ldapsdk'
 

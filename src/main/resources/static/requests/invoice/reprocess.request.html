@@ -5,20 +5,20 @@
             <div class="form-group form-inline">
                 <label>Sender OBX Identifier(s):</label>
                 <input type="text" class="form-control" id="senderObxInput" ng-model="search.senderObx.input">
-                <input type="file" class="form-control" id="senderObxFile" ng-model="search.senderObx.file">
-                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.senderObx.type"></select>
+                <input type="file" class="form-control" id="senderObxFile" file-input="search.senderObx.file">
+                <select class="form-control" ng-options="item as item.label for item in items track by item.id" ng-model="search.senderObx.type"></select>
             </div>
             <div class="form-group form-inline">
                 <label>Buyer OBX Identifier(s):</label>
                 <input type="text" class="form-control" id="buyerObxInput" ng-model="search.buyerObx.input">
-                <input type="file" class="form-control" id="buyerObxFile" ng-model="search.buyerObx.file">
-                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.buyerObx.type"></select>
+                <input type="file" class="form-control" id="buyerObxFile" file-input="search.buyerObx.file">
+                <select class="form-control" ng-options="item as item.label for item in items track by item.id" ng-model="search.buyerObx.type"></select>
             </div>
             <div class="form-group form-inline">
                 <label>Buyer File Id(s):</label>
                 <input type="text" class="form-control" id="buyerFileIdInput" ng-model="search.buyerFile.input">
-                <input type="file" class="form-control" id="buyerFileIdFile" ng-model="search.buyerFile.file">
-                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.buyerFile.type"></select>
+                <input type="file" class="form-control" id="buyerFileIdFile" file-input="search.buyerFile.file">
+                <select class="form-control" ng-options="item as item.label for item in items track by item.id" ng-model="search.buyerFile.type"></select>
             </div>
             <div class="form-group form-inline">
                 <label>Buyer File Name:</label>
@@ -27,16 +27,16 @@
             <div class="form-group form-inline">
                 <label>Invoice Number(s):</label>
                 <input type="text" class="form-control" id="invoiceNumberInput" ng-model="search.invoiceNumber.input">
-                <input type="file" class="form-control" id="invoiceNumberFile" ng-model="search.invoiceNumber.file">
-                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.invoiceNumber.type"></select>
+                <input type="file" class="form-control" id="invoiceNumberFile" file-input="search.invoiceNumber.file">
+                <select class="form-control" ng-options="item as item.label for item in items track by item.id" ng-model="search.invoiceNumber.type"></select>
             </div>
             <div class="form-group form-inline">
                 <label>Transaction Number(s):</label>
                 <input type="text" class="form-control" id="transactionNumberInput" ng-model="search.transactionNumber.input">
-                <input type="file" class="form-control" id="transactionNumberFile" ng-model="search.transactionNumber.file">
-                <select ng-options="item as item.label for item in requestCtrl.items track by item.id" ng-model="search.transactionNumber.type"></select>
+                <input type="file" class="form-control" id="transactionNumberFile" file-input="search.transactionNumber.file">
+                <select class="form-control" ng-options="item as item.label for item in items track by item.id" ng-model="search.transactionNumber.type"></select>
             </div>
-            <button class="btn btn-primary" ng-click="vm.reprocessRequest(search)">Search</button>
+            <button class="btn btn-primary" ng-click="requestsCtrl.reprocessRequest(search)">Search</button>
         </form>
     </div>
 </div>
@@ -44,6 +44,50 @@
 <div class="panel panel-default">
     <div class="panel-heading"> Reprocess Request Search Result </div>
     <div class="panel-body">
+        <table class="table table-fixed table-striped table-hover" ng-if="requestsCtrl.reprocessRequestData.length > 0">
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>Buyer File Id</th>
+                <th>Buyer File Name</th>
+                <th>Buyer Id</th>
+                <th>Buyer Name</th>
+                <th>Image Status</th>
+                <th>Input File Name</th>
+                <th>Invoice Header Id</th>
+                <th>Invoice Number</th>
+                <th>Invoice Status</th>
+                <th>Supplier Id</th>
+                <th>Supplier Name</th>
+                <th>transaction Number</th>
+            </tr>
+            <tr ng-repeat="dataItem in requestsCtrl.reprocessRequestData">
+                <td><input type="checkbox" ng-model="dataItem.selected"></td>
+                <td>{{dataItem.buyerFileId}}</td>
+                <td>{{dataItem.buyerFileName}}</td>
+                <td>{{dataItem.buyerId}}</td>
+                <td>{{dataItem.buyerName}}</td>
+                <td>{{dataItem.imageStatus}}</td>
+                <td>{{dataItem.inputFileName}}</td>
+                <td>{{dataItem.invoiceHeaderId}}</td>
+                <td>{{dataItem.invoiceNumber}}</td>
+                <td>{{dataItem.invoiceStatus}}</td>
+                <td>{{dataItem.supplierId}}</td>
+                <td>{{dataItem.supplierName}}</td>
+                <td>{{dataItem.transactionNumber}}</td>
+            </tr>
+        </table>
+        <div ng-if="requestsCtrl.reprocessRequestData.length == 0">Nothing found</div>
+    </div>
+</div>
 
+<div class="panel panel-default">
+    <div class="panel-heading"> Reprocess Request Search Result </div>
+    <div class="panel-body">
+        <div class="form-group form-inline"><input type="checkbox" class="form-control" ng-model="option.remove"> <label class="control-label">Remove available images</label></div>
+        <div class="form-group form-inline"><input type="checkbox" class="form-control" ng-model="option.resend"> <label class="control-label">Resend attachments</label></div>
+        <div class="form-group form-inline"><input type="checkbox" class="form-control" ng-model="option.writeToRIF"> <label class="control-label">Write to RIF</label></div>
+        <div class="form-group form-inline"><input type="checkbox" class="form-control" ng-model="option.writeToDB"> <label class="control-label">Write images to database</label></div>
+        <div class="form-group form-inline"><input type="checkbox" class="form-control" ng-model="option.send"> <label class="control-label">Send invoice images</label> <select class="form-control" ng-options="type for type in sendImgType" ng-model="option.sendType"></select> <input type="text" class="form-control" ng-model="option.sendInput"></div>
+        <div class="form-group form-inline"><button class="btn btn-primary" ng-click="requestsCtrl.reprocessRequestSend(requestsCtrl.reprocessRequestData, option)">Send</button></div>
     </div>
 </div>
