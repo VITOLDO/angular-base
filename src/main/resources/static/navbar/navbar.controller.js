@@ -18,7 +18,7 @@ function NavbarCtrl() {
             {title:'Client Data Update', url:'#!/requests/cdu', type:'link'}]},
         {title:'Schedulers', url:'#', type:'link'},
         {title:'Monitoring', url:'#', type:'group', group: [
-            {title:'Invoice', url:'#/monitoring/invoice', type:'link'},
+            {title:'Invoice', url:'#!/monitoring/invoice', type:'link'},
             {title:'Invoice Payment', url:'#', type:'link'},
             {title:'Purchase Order', url:'#', type:'link'},
             {title:'Client Data Update', url:'#', type:'link'}]},
