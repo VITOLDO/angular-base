@@ -4,9 +4,9 @@ angular
     .module('myApp')
     .controller('RequestsCtrl', RequestsCtrl);
 
-RequestsCtrl.$inject = ['$route', '$scope', '$http', 'ngToast']
+RequestsCtrl.$inject = ['$route', '$scope', '$http', 'ngToast', 'urls']
 
-function RequestsCtrl($route, $scope, $http, ngToast) {
+function RequestsCtrl($route, $scope, $http, ngToast, urls) {
     ngToast.dismiss();
     var vm = this;
 
@@ -51,7 +51,7 @@ function RequestsCtrl($route, $scope, $http, ngToast) {
         }
 
         /*TODO: Pagination*/
-        $http.post('https://localhost:9443/papi/services/invoiceadmintool/invoicetransactions?startRowNum=0&endRowNum=10', body)
+        $http.post(urls.apiUrl + 'invoiceadmintool/invoicetransactions?startRowNum=0&endRowNum=10', body)
             .then(function(response){
                     vm.reprocessRequestData = response.data;
                 },
@@ -86,7 +86,7 @@ function RequestsCtrl($route, $scope, $http, ngToast) {
             "sendImgAddr" : option.sendInput
         }
 
-        $http.post('https://localhost:9443/papi/services/invoiceadmintool/reprocessrequest', body)
+        $http.post(urls.apiUrl + 'invoiceadmintool/reprocessrequest', body)
             .then(function(response){
                     ngToast.create({
                         className: 'success',

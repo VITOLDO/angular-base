@@ -4,9 +4,9 @@ angular
     .module('myApp')
     .controller('SyspropController', SyspropController) ;
 
-SyspropController.$inject = ['$resource', '$scope', '$http', '$base64', 'ngToast'];
+SyspropController.$inject = ['$resource', '$scope', '$http', '$base64', 'ngToast', 'urls'];
 
-function SyspropController($resource, $scope, $http, $base64, ngToast) {
+function SyspropController($resource, $scope, $http, $base64, ngToast, urls) {
     ngToast.dismiss();
 
     var dataInMilliseconds = ['ADM.MN_HISTORY_TIMEOUT', 'ADM.MN_USER_ACTIVE_TIMEOUT',
@@ -23,7 +23,7 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
         vm.thisApp = appId;
 
         vm.syspropertiesMap = {};
-        $http.get('https://papi:9443/papi/services/system/properties/' + vm.thisApp).then(function(response){
+        $http.get(urls.apiUrl + 'system/properties/' + vm.thisApp).then(function(response){
             response.data
                 .forEach(function(item) {
                      if (-1 !== dataInMilliseconds.indexOf(item.key)) {
@@ -52,7 +52,7 @@ function SyspropController($resource, $scope, $http, $base64, ngToast) {
         })
 
         $http
-            .put('https://papi:9443/papi/services/system/properties/' + vm.thisApp, requestForSave)
+            .put(urls.apiUrl + 'system/properties/' + vm.thisApp, requestForSave)
             .then(function(response){
                     ngToast.create({
                         className: 'success',

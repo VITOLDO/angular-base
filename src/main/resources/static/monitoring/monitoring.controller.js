@@ -4,9 +4,9 @@ angular
     .module('myApp')
     .controller('MonitoringCtrl', MonitoringCtrl);
 
-MonitoringCtrl.$inject = ['$http', 'ngToast', '$scope', '$filter']
+MonitoringCtrl.$inject = ['$http', 'ngToast', '$scope', '$filter', 'urls']
 
-function MonitoringCtrl($http, ngToast, $scope, $filter) {
+function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
     ngToast.dismiss();
     var vm = this;
     // Defaulted values are: From yesterday to today
@@ -17,7 +17,7 @@ function MonitoringCtrl($http, ngToast, $scope, $filter) {
 
     vm.refresh = function(date) {
         var rows = getRowNum(vm.pagination);
-        $http.get("https://localhost:9443/papi/services/invoiceadmintool/monitoring/input/files?startRowNum=" + rows.startRowNum +
+        $http.get(urls.apiUrl + "invoiceadmintool/monitoring/input/files?startRowNum=" + rows.startRowNum +
             "&endRowNum=" + rows.endRowNum +
             "&dateFrom=" + $filter('date')(date.from, 'yyyy-MM-dd') +
             "T00:00:00&dateTo=" + $filter('date')(date.to, 'yyyy-MM-dd') + "T23:59:59")

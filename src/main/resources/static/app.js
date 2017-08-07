@@ -41,7 +41,10 @@ var app = angular.module('myApp', [
                 });
             }
         }
-    }]);
+    }])
+    .constant('domain', 'https://localhost:9443/')
+    .constant('api', 'papi/services/')
+    .service('urls', function(domain, api){this.apiUrl = domain+api;});
 
 config.$inject = ['$locationProvider', '$routeProvider', '$httpProvider', 'ngToastProvider'];
 
@@ -88,6 +91,11 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
             templateUrl: 'requests/cdu/cdu.html',
             controller: 'RequestCtrl'
         })
+    .when('/monitoring/queues', {
+        templateUrl: 'monitoring/queue/monitoring.queue.html',
+        controller: 'QueueCtrl',
+        controllerAs: 'queueCtrl'
+    })
     .when('/monitoring/invoice', {
         templateUrl: 'monitoring/monitoring.html',
         controller: 'MonitoringCtrl',
