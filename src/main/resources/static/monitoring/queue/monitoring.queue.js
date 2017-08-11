@@ -26,7 +26,7 @@ function QueueCtrl($http, ngToast, $scope, $filter, urls) {
     }
 
     vm.refreshDLQ = function(full) {
-        $http.get(urls.apiUrl + 'nifi/application/dlq)
+        $http.get(urls.apiUrl + 'nifi/application/dlq')
             .then(function(response){
                 vm.dlqFromDb = response.data;
             }, function(error){
@@ -47,7 +47,7 @@ function QueueCtrl($http, ngToast, $scope, $filter, urls) {
                         verticalPosition: 'top',
                         dismissOnTimeout: false});
                 });
-        })
+        }
     }
 
     vm.refreshQueues();
