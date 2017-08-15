@@ -4,11 +4,14 @@ angular
     .module('myApp')
     .controller('MonitoringCtrl', MonitoringCtrl);
 
-MonitoringCtrl.$inject = ['$http', 'ngToast', '$scope', '$filter', 'urls']
+MonitoringCtrl.$inject = ['$route', '$http', 'ngToast', '$scope', '$filter', 'urls']
 
-function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
+function MonitoringCtrl($route, $http, ngToast, $scope, $filter, urls) {
     ngToast.dismiss();
     var vm = this;
+
+    $scope.settings = $route.current.settings;
+
     // Defaulted values are: From yesterday to today
     $scope.date = {"from" : new Date(new Date().setSeconds(-1*60*60*24)), "to" : new Date()}
 
@@ -18,7 +21,7 @@ function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
     vm.paginationDocs = {current: 1, pageSize: 10, count: 0}
     vm.data = {};
     vm.activeTable = 0;
-    vm.application = 'invoiceadmintool'
+    vm.application = $scope.settings.type + 'admintool'
 
     vm.refresh = function(date) {
         var rows = getRowNum(vm.pagination);
@@ -31,7 +34,7 @@ function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
                 vm.pagination.count = response.data.count;
             }, function(error) {
                 ngToast.create({className: 'danger',
-                   content: "Invoice monitoring is in error state.",
+                   content: $scope.settings.type + " monitoring is in error state.",
                    verticalPosition: 'top',
                    dismissOnTimeout: false});
             });
@@ -49,7 +52,7 @@ function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
                 vm.paginationFiles.count = response.data.count;
             }, function(error) {
                 ngToast.create({className: 'danger',
-                   content: "Invoice monitoring is in error state.",
+                   content: $scope.settings.type + " monitoring is in error state.",
                    verticalPosition: 'top',
                    dismissOnTimeout: false});
             });
@@ -67,7 +70,7 @@ function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
                 vm.paginationDocs.count = response.data.count;
             }, function(error) {
                 ngToast.create({className: 'danger',
-                   content: "Invoice monitoring is in error state.",
+                   content: $scope.settings.type + " monitoring is in error state.",
                    verticalPosition: 'top',
                    dismissOnTimeout: false});
             });
@@ -85,7 +88,7 @@ function MonitoringCtrl($http, ngToast, $scope, $filter, urls) {
                 vm.paginationClients.count = response.data.count;
             }, function(error) {
                 ngToast.create({className: 'danger',
-                   content: "Invoice monitoring is in error state.",
+                   content: $scope.settings.type + " monitoring is in error state.",
                    verticalPosition: 'top',
                    dismissOnTimeout: false});
             });

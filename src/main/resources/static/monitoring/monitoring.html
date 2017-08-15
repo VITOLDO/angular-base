@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading"> Monitoring Invoice </div>
+    <div class="panel-heading"> Monitoring {{settings.label}} </div>
     <div class="panel-body">
         <div class="form-group form-inline">
             <label class="control-label">From:</label><input type="date" class="form-control" ng-model="date.from">
@@ -53,7 +53,7 @@
 </div>
 
 <uib-accordion close-others="false">
-    <div uib-accordion-group heading="Table Details Invoice" is-open="true" class="panel panel-default">
+    <div uib-accordion-group heading="Table Details {{settings.label}}" is-open="true" class="panel panel-default">
         <div class="panel-body">
             <uib-tabset active="monitoringCtrl.activeTable">
                 <uib-tab heading="Files" index="0">
@@ -160,7 +160,7 @@
         </div>
     </div>
 
-    <div uib-accordion-group heading="Details Invoice" class="panel panel-default">
+    <div uib-accordion-group heading="Details {{settings.label}}" class="panel panel-default">
         <div class="panel-body">
             <div class="form-group form-inline">
                 <label class="control-label">ID:</label>

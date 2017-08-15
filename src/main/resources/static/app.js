@@ -79,6 +79,18 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
                 controllerAs: 'requestsCtrl',
                 action: {html:'reprocess.request.html', title:'Reprocess Request'}
             })
+            .when('/requests/invoice/repeating_file_delivery', {
+                templateUrl: 'requests/invoice/invoice.request.template.html',
+                controller: 'RequestsCtrl',
+                controllerAs: 'requestsCtrl',
+                action: {html:'repeating.file.delivery.html', title:'Repeating File Delivery'}
+            })
+            .when('/requests/invoice/cacheclean', {
+                templateUrl: 'requests/invoice/invoice.request.template.html',
+                controller: 'RequestsCtrl',
+                controllerAs: 'requestsCtrl',
+                action: {html:'cache.clean.html', title:'Cache Clean'}
+            })
         .when('/requests/ip', {
             templateUrl: 'requests/ip/ip.html',
             controller: 'RequestCtrl'
@@ -99,7 +111,26 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
     .when('/monitoring/invoice', {
         templateUrl: 'monitoring/monitoring.html',
         controller: 'MonitoringCtrl',
-        controllerAs: 'monitoringCtrl'
+        controllerAs: 'monitoringCtrl',
+        settings: {type: 'invoice', label: 'Invoice'}
+    })
+    .when('/monitoring/po', {
+        templateUrl: 'monitoring/monitoring.html',
+        controller: 'MonitoringCtrl',
+        controllerAs: 'monitoringCtrl',
+        settings: {type: 'po', label: 'Purchase Order'}
+    })
+    .when('/monitoring/ip', {
+        templateUrl: 'monitoring/monitoring.html',
+        controller: 'MonitoringCtrl',
+        controllerAs: 'monitoringCtrl',
+        settings: {type: 'ip', label: 'Invoice Payment'}
+    })
+    .when('/monitoring/cdu', {
+        templateUrl: 'monitoring/monitoring.html',
+        controller: 'MonitoringCtrl',
+        controllerAs: 'monitoringCtrl',
+        settings: {type: 'cdu', label: 'Client Data Update'}
     })
     .when('/search', {
         templateUrl: 'search/search.html',

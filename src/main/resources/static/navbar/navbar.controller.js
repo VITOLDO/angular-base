@@ -20,8 +20,8 @@ function NavbarCtrl() {
         {title:'Monitoring', url:'#', type:'group', group: [
             {title:'Queues', url:'#!/monitoring/queues', type:'link'},
             {title:'Invoice', url:'#!/monitoring/invoice', type:'link'},
-            {title:'Invoice Payment', url:'#', type:'link'},
-            {title:'Purchase Order', url:'#', type:'link'},
-            {title:'Client Data Update', url:'#', type:'link'}]},
+            {title:'Invoice Payment', url:'#!/monitoring/ip', type:'link'},
+            {title:'Purchase Order', url:'#!/monitoring/po', type:'link'},
+            {title:'Client Data Update', url:'#!/monitoring/cdu', type:'link'}]},
         {title:'Logging', url:'#', type:'link'}];
 }

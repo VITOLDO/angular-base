@@ -102,4 +102,39 @@ function RequestsCtrl($route, $scope, $http, ngToast, urls) {
                         dismissOnTimeout: false});
                 });
     }
+
+    vm.cacheClean = function(client) {
+        $http.delete(urls.apiUrl + 'invoiceadmintool/client/cache?clients=' + client)
+            .then(function(response) {
+
+            },
+            function(error) {
+
+            })
+    }
+
+    vm.updateRepeatingFileDelivery = function(search) {
+        var body = {"filename" : search.fileName,
+            "clientId": search.clientId,
+            "clientName": search.clientName,
+            "dateFrom": search.dateFrom,
+            "dateTo": search.dateTo}
+        $http.post(urls.apiUrl + 'invoiceadmintool/invoiceoutputfileslist?startRowNum=0&endRowNum=10', body)
+            .then(function(response){
+                vm.repeatingFileDeliveryData = response.data;
+            },function(error){
+                ngToast.create({
+                   className: 'danger',
+                   content: "Invoice repeatingFileDelivery 'search' in error state : " + error,
+                   verticalPosition: 'top',
+                   dismissOnTimeout: false});
+            })
+    }
+    vm.resendRepeatingFileDelivery = function() {
+        ngToast.create({
+           className: 'danger',
+           content: "Invoice repeatingFileDelivery 'resend' in development",
+           verticalPosition: 'top',
+           dismissOnTimeout: false});
+    }
 }
