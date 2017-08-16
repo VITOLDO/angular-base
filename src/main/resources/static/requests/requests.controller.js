@@ -114,11 +114,14 @@ function RequestsCtrl($route, $scope, $http, ngToast, urls) {
     }
 
     vm.updateRepeatingFileDelivery = function(search) {
-        var body = {"filename" : search.fileName,
-            "clientId": search.clientId,
-            "clientName": search.clientName,
-            "dateFrom": search.dateFrom,
-            "dateTo": search.dateTo}
+        var body = {};
+        if (angular.isDefined(search)) {
+            body = {"filename" : search.fileName,
+                "clientId": search.clientId,
+                "clientName": search.clientName,
+                "dateFrom": search.dateFrom,
+                "dateTo": search.dateTo}
+        }
         $http.post(urls.apiUrl + 'invoiceadmintool/invoiceoutputfileslist?startRowNum=0&endRowNum=10', body)
             .then(function(response){
                 vm.repeatingFileDeliveryData = response.data;
@@ -130,11 +133,24 @@ function RequestsCtrl($route, $scope, $http, ngToast, urls) {
                    dismissOnTimeout: false});
             })
     }
-    vm.resendRepeatingFileDelivery = function() {
-        ngToast.create({
-           className: 'danger',
-           content: "Invoice repeatingFileDelivery 'resend' in development",
-           verticalPosition: 'top',
-           dismissOnTimeout: false});
+    vm.resendRepeatingFileDelivery = function(request) {
+        var selectedItems = request.filter(function(item){return item.selected});
+        var body = {
+            "outputFiles" : selectedItems.map(function(item){return {"outputFileId":item.outputFileId, "outputFileName":item.outputFileName, "receiverId":item.receiverId}}),
+        }
+        $http.post(urls.apiUrl + 'invoiceadmintool/invoiceoutputregeneration', body)
+            .then(function(response){
+                ngToast.create({
+                   className: 'success',
+                   content: "Invoice repeatingFileDelivery 'resend' returned success result",
+                   verticalPosition: 'top',
+                   dismissOnTimeout: false});
+            }, function(error){
+                ngToast.create({
+                   className: 'danger',
+                   content: "Invoice repeatingFileDelivery 'resend' in error state",
+                   verticalPosition: 'top',
+                   dismissOnTimeout: false});
+            })
     }
 }

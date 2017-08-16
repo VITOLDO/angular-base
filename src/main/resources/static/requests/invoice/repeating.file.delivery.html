@@ -47,7 +47,7 @@
                     <td>{{dataItem.fileDate}}</td>
                 </tr>
             </table>
-            <button class="btn btn-primary" ng-click="requestCtrl.resendRepeatingFileDelivery()">Resend</button>
+            <button class="btn btn-primary" ng-click="requestsCtrl.resendRepeatingFileDelivery(requestsCtrl.repeatingFileDeliveryData)">Resend</button>
         </div>
         <div ng-if="requestsCtrl.repeatingFileDeliveryData.length == 0">Nothing found</div>
     </div>
