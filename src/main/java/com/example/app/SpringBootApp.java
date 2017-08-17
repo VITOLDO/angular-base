@@ -20,16 +20,16 @@ import java.security.GeneralSecurityException;
  * Created by vfilonenko on 07.07.2017.
  */
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-public class SpringBootApp /*extends SpringBootServletInitializer*/ {
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+public class SpringBootApp extends SpringBootServletInitializer {
 
     @Value("${keystore.file}") Resource keystoreFile;
     @Value("${truststore.file}") Resource trustFile;
 
-    /*@Override
+    @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(SpringBootApp.class);
-    }*/
+    }
 
     public static void main(String[] args) throws GeneralSecurityException {
         SpringApplication.run(SpringBootApp.class, args);

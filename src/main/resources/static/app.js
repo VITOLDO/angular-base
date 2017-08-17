@@ -2,7 +2,7 @@
 
 var permissionList;
 angular.element(document).ready(function() {
-  $.get('/user/roles', function(data) {
+  $.get('user/roles', function(data) {
     permissionList = data;
     angular.bootstrap(document, ['myApp']);
   });

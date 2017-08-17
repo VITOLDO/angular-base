@@ -15,7 +15,7 @@ function MainCtrl(permissions, $http, ngToast) {
         return permissions.hasPermission(value);
     }
 
-    $http.get('/user').then(function(response) {
+    $http.get('user').then(function(response) {
         vm.user = response.data;
     }, function(error) {
         ngToast.danger({

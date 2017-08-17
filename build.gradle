@@ -59,7 +59,7 @@ dependencies {
 
 //    compile group: 'com.unboundid', name: 'unboundid-ldapsdk'
 
-//    compile group: 'javax.servlet', name: 'servlet-api', version: '3.0-alpha-1'
+    compile group: 'javax.servlet', name: 'servlet-api', version: '3.0-alpha-1'
 
-//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
