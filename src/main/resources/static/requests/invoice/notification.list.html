@@ -1,0 +1,54 @@
+<div class="panel panel-default">
+    <div class="panel-heading"> Notification List Search </div>
+    <div class="panel-body">
+        <form>
+            <div class="form-group form-inline">
+                <label>Sender OBX Identifier(s):</label>
+                <input type="text" class="form-control" id="senderObxInput" ng-model="search.senderId">
+            </div>
+            <div class="form-group form-inline">
+                <label>Client Name:</label>
+                <input type="text" class="form-control" id="buyerObxInput" ng-model="search.senderName">
+            </div>
+            <div class="form-group form-inline">
+                <label>Notification Type:</label>
+                <select class="form-control" id="buyerFileIdInput" ng-options="item.notificationTypeId as item.notificationTypeName for item in requestsCtrl.notificationTypes track by item.notificationTypeId" ng-model="search.notificationType"></select>
+            </div>
+            <div class="form-group form-inline">
+                <label>Date From:</label>
+                <input type="date" class="form-control" id="dateFrom" ng-model="search.dateFrom">
+                <label>To:</label>
+                <input type="date" class="form-control" id="dateTo" ng-model="search.dateTo">
+            </div>
+            <button class="btn btn-primary" ng-click="requestsCtrl.updateNotificationList(search)">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"> Notification List Search Result </div>
+    <div class="panel-body">
+        <div ng-if="requestsCtrl.notificationListData.length > 0">
+            <table class="table table-fixed table-striped table-hover">
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Client OBX Identifier</th>
+                    <th>Client Name</th>
+                    <th>Client Type</th>
+                    <th>Notification Name</th>
+                    <th>Notification Date</th>
+                </tr>
+                <tr ng-repeat="dataItem in requestsCtrl.notificationListData">
+                    <td><input type="checkbox" ng-model="dataItem.selected"></td>
+                    <td>{{dataItem.clientId}}</td>
+                    <td>{{dataItem.clientName}}</td>
+                    <td>{{dataItem.clientType}}</td>
+                    <td>{{dataItem.notificationName}}</td>
+                    <td>{{dataItem.notificationDate}}</td>
+                </tr>
+            </table>
+            <button class="btn btn-primary" ng-click="requestsCtrl.notificationResend(requestsCtrl.notificationListData)">Resend</button>
+        </div>
+        <div ng-if="requestsCtrl.notificationListData.length == 0">Nothing found</div>
+    </div>
+</div>

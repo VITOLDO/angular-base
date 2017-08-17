@@ -79,6 +79,18 @@ function config($locationProvider, $routeProvider, $httpProvider, ngToastProvide
                 controllerAs: 'requestsCtrl',
                 action: {html:'reprocess.request.html', title:'Reprocess Request'}
             })
+            .when('/requests/invoice/delete_invoice', {
+                templateUrl: 'requests/invoice/invoice.request.template.html',
+                controller: 'RequestsCtrl',
+                controllerAs: 'requestsCtrl',
+                action: {html:'delete.invoice.html', title:'Delete Invoice'}
+            })
+            .when('/requests/invoice/notification_list', {
+                templateUrl: 'requests/invoice/invoice.request.template.html',
+                controller: 'RequestsCtrl',
+                controllerAs: 'requestsCtrl',
+                action: {html:'notification.list.html', title:'Notifications List'}
+            })
             .when('/requests/invoice/repeating_file_delivery', {
                 templateUrl: 'requests/invoice/invoice.request.template.html',
                 controller: 'RequestsCtrl',
