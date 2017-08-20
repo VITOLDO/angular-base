@@ -4,7 +4,9 @@ angular
     .module('myApp')
     .controller('SecurityCtrl', SecurityCtrl);
 
- function SecurityCtrl($resource, $scope, ngToast) {
+SecurityCtrl.$inject = ['$resource', '$scope', 'ngToast', 'bsLoadingOverlayService']
+
+function SecurityCtrl($resource, $scope, ngToast, bsLoadingOverlayService) {
     ngToast.dismiss();
 
     var thisScope = $scope;
@@ -22,7 +24,14 @@ angular
     }
 
     $scope.assignGroupToUser = function(group, assigned) {
+        bsLoadingOverlayService.start({
+            referenceId: 'first'
+        });
         group.assigned = assigned;
+
+        bsLoadingOverlayService.stop({
+            referenceId: 'first'
+        });
     }
 
     $scope.saveUserGroups = function(user, groups) {
@@ -31,5 +40,17 @@ angular
            content: "User with : " + user.userName + " should be updated with following groups : " + groups,
            verticalPosition: 'top',
            dismissOnTimeout: false});
+    }
+
+    $scope.start = function(id) {
+        bsLoadingOverlayService.start({
+            referenceId: id
+        });
+    }
+
+    $scope.stop = function(id) {
+        bsLoadingOverlayService.stop({
+            referenceId: id
+        });
     }
 };

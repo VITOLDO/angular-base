@@ -2,10 +2,10 @@
 
 var permissionList;
 angular.element(document).ready(function() {
-  $.get('user/roles', function(data) {
-    permissionList = data;
+//  $.get('user/roles', function(data) {
+    permissionList = ["SYSTEM PROPERTIES, READ","SYSTEM PROPERTIES, WRITE"];
     angular.bootstrap(document, ['myApp']);
-  });
+//  });
 });
 
 // Declare app level module which depends on views, and components
@@ -15,7 +15,8 @@ var app = angular.module('myApp', [
   'ui.bootstrap',
   'ngResource',
   'base64',
-  'ngToast'
+  'ngToast',
+  'bsLoadingOverlay'
 ])
     .config(config)
     .factory('permissions', permissions)
@@ -166,8 +167,11 @@ function secondsToDateTime() {
     };
 }
 
-app.run(function(permissions) {
+app.run(function(permissions, bsLoadingOverlayService) {
   permissions.setPermissions(permissionList);
+  bsLoadingOverlayService.setGlobalConfig({
+    templateUrl: 'loading-overlay-template.html'
+  });
 });
 
 permissions.$inject = ['$rootScope'];

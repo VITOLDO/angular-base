@@ -37,3 +37,8 @@ body {
 .request-action {
     width: 420px;
 }
+
+.bs-loading-container {
+    position: relative;
+    margin-top: 15px;
+}

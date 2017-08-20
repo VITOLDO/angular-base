@@ -8,6 +8,9 @@
         Selected User is {{selectedUser.userName}}. Show others?
       </button>
 
+      <button class="btn btn-primary" ng-click="start('first')">Show</button>
+      <button class="btn btn-primary" ng-click="stop('first')">Hide</button>
+
       <div id="usertable">
         <table class="table table-striped table-hover table-bordered">
           <thead>
@@ -30,7 +33,7 @@
         </table>
       </div>
 
-      <div >
+      <div class="well well-lg bs-loading-container" bs-loading-overlay bs-loading-overlay-reference-id="first" bs-loading-overlay-delay="3000" bs-loading-overlay-active-class="loading-overlay--active">
         <div class="col-xs-5">
 
           <p>Roles assigned to User</p>
